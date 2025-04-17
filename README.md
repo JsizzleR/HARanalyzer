@@ -1,5 +1,5 @@
 # HARanalyzer
-Analyze HAR files
+Analyze HAR files using an LLM
 
 - Supports analyzing HAR files for Posit Connect
 - Capable of analyzing performance, including failed protocols, timeouts, and proxy/load balancer involvement.
