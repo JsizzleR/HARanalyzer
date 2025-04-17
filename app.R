@@ -90,6 +90,7 @@ server <- function(input, output, session) {
     values$chat <- NULL
     values$chat_started <- FALSE
     values$summary_ready_at <- NULL
+    chat_clear("chat")
     
     har <- fromJSON(input$harfile$datapath, simplifyVector = FALSE)
     har_slim <- slim_har_for_llm(har)
