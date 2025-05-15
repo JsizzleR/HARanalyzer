@@ -142,14 +142,15 @@ server <- function(input, output, session) {
           
           initial_prompt <- paste(
             "This HAR file has been stripped of body content, but retains headers, URLs, status codes, timings, and server info.",
-            "Your task is to analyze this HAR for signs of backend, protocol, or transport-related issues.",
+            "Your task is to analyze this HAR for signs of unexpected delays, and backend, protocol, or transport-related issues.",
             "\n\nFocus on identifying and calling out:\n",
-            "1. Any failed or incomplete transport protocols (e.g., WebSocket failed, XHR streaming failed).\n",
-            "2. Protocol fallback patterns — such as WebSocket → XHR Streaming → XHR Send (polling).\n",
+            "1. Any excessively long calls. (e.g., Over 20 seconds).\n",
+            "2. Any failed or incomplete transport protocols (e.g., WebSocket failed, XHR streaming failed).\n",
+            "3. Protocol fallback patterns — such as WebSocket → XHR Streaming → XHR Send (polling).\n",
             "   - Note: `xhr_send` typically indicates the final fallback to XHR polling.\n",
             "   - Note: `wss` (websockets) should work and if they fail that is a major issue to focus on and correct.\n",
-            "3. Requests that are significantly slower than others. (Provide time in seconds instead of ms)\n",
-            "4. Proxy or load balancer involvement — infer from `server` headers (e.g., nginx, Cloudflare).\n",
+            "4. Requests that are significantly slower than others. (Provide time in seconds instead of ms)\n",
+            "5. Proxy or load balancer involvement — infer from `server` headers (e.g., nginx, Cloudflare).\n",
             "\nDo NOT comment on CSS/JS asset sizes or frontend optimizations — focus entirely on backend, protocol, and network-layer analysis.\n",
             "\n\nHere is the HAR content (truncated):\n\n",
             truncated_json
